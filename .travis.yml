@@ -5,3 +5,12 @@ services:
 script:
     - docker build -t ivanq3/node .
     - docker images ivanq3/node
+
+before_deploy:
+    - docker login -u ivanq3 -p dokiranje.645
+
+deploy:
+    provider: script
+    script: docker push ivanq3/node
+    on:
+        branch: master
